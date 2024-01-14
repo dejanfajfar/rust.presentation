@@ -1,30 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>Rust - a shallow deep dive</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/moon.css">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/moon.css" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/zenburn.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-markdown>
-					<textarea data-template>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
 						# Rust language
 
 						> A shallow deep dive
-					</textarea>
-				</section>
-				<section>
-					<pre><code data-trim data-noescape data-line-numbers>
+			</textarea
+          >
+        </section>
+        <section>
+          <pre>
+			<code data-trim data-noescape data-line-numbers>
 						fn main() {
 							// Define two numbers
 							let num1 = 5;
@@ -36,30 +41,39 @@
 							// Print the result
 							println!("The sum of {} and {} is: {}", num1, num2, sum);
 						}
-					</code></pre>
-				</section>
-			</div>
-		</div>
+					</code>
+				</pre>
+        </section>
+        <section>
+          <h2>So why Rust?</h2>
+          <p>There are thousands of presentation and video giving an introductionary class to rust.</p>
+		  <p>But here I would like to give you <strong>my</strong> experience</p>
+        </section>
+		<section>
+			
+		</section>
+      </div>
+    </div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				// Activate the scroll view
-  view: 'scroll',
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        // Activate the scroll view
+        view: "scroll",
 
-// Force the scrollbar to remain visible
-scrollProgress: true,
-				hash: true,
+        // Force the scrollbar to remain visible
+        scrollProgress: true,
+        hash: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
 </html>
