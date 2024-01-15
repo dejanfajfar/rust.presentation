@@ -45,13 +45,87 @@
 				</pre>
         </section>
         <section>
-          <h2>So why Rust?</h2>
-          <p>There are thousands of presentation and video giving an introductionary class to rust.</p>
-		  <p>But here I would like to give you <strong>my</strong> experience</p>
+          <h2>So why should I listen to this presentation?</h2>
+		      <p>Because this is my <strong>my</strong> experience with "learning" Rust</p>
         </section>
-		<section>
-			
-		</section>
+        <section>
+          <h2>The return of * and &</h2>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="1-9|5|8">
+              fn main() {
+                let x = 42;
+            
+                // Creating a reference to x
+                let reference_to_x = &x;
+            
+                println!("Original value: {}", x);
+                println!("Value through reference: {}", *reference_to_x);
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="1-9|2|5-6">
+              fn main() {
+                let mut y = 10;
+            
+                // Mutable reference
+                let reference_to_y = &mut y;
+                *reference_to_y += 5;
+            
+                println!("Original value: {}", y);
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>Borrow checker</h2>
+          <p>If you give something away it is no longer available</p>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="1-17|9-13|15-17|2|3-4|6">
+              fn main() {
+                let mut data = vec![1, 2, 3, 4, 5];
+                print_vector(&data);
+                modify_vector(&mut data);
+            
+                print_vector(&data); // ☠ 
+              }
+
+              fn print_vector(v: &Vec<i32>) {
+                  for item in v {
+                      println!("{}", item);
+                  }
+              }
+
+              fn modify_vector(v: &mut Vec<i32>) {
+                  v.push(6);
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>No inheritance!</h2>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers>
+              struct Dog {
+                name: String,
+                sound: String,
+              }
+
+              struct Cat {
+                name: String,
+                sound: String,
+              }
+            </code>
+          </pre>
+        </section>
       </div>
     </div>
 
@@ -70,6 +144,7 @@
         // Force the scrollbar to remain visible
         scrollProgress: true,
         hash: true,
+        backgroundTransition: 'slide',
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
