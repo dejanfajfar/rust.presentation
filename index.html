@@ -45,8 +45,11 @@
 				</pre>
         </section>
         <section>
-          <h2>So why should I listen to this presentation?</h2>
-		      <p>Because this is my <strong>my</strong> experience with "learning" Rust</p>
+          <h3>So why should I care?</h3>
+          <ul>
+            <li>This is my personal experience while learning</li>
+            <li>Because it hurt a lot</li>
+          </ul>
         </section>
         <section>
           <h2>The return of * and &</h2>
@@ -65,6 +68,9 @@
               }
             </code>
           </pre>
+        </section>
+        <section>
+          <h3>Mutalibilty</h3>
         </section>
         <section>
           <pre>
@@ -113,7 +119,11 @@
         </section>
         <section>
           <pre>
-            <code data-trim data-noescape data-line-numbers>
+            <code data-trim data-noescape data-line-numbers="1-13|5-13|1-3">
+              trait Animal {
+                fn make_sound(&self);
+              }
+
               struct Dog {
                 name: String,
                 sound: String,
@@ -125,6 +135,177 @@
               }
             </code>
           </pre>
+        </section>
+        <section>
+          <pre>
+            <code  data-trim data-noescape data-line-numbers>
+              impl Animal for Dog{
+                fn make_sound(&self) {
+                  println!("The dog says {}", self.sound);
+                }
+              }
+
+              impl Animal for Cat {
+                fn make_sound(&self) {
+                  println!("The cat says {}", self.sound);
+                }
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <p>Trait default implementation</p>
+          <pre>
+            <code data-trim data-noescape data-line-numbers>
+              trait Animal {
+                fn make_sound(&self) {
+                  println!("The animal says {}", self.get_sound());
+                }
+                fn get_sound(&self) -> String;
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>Macros</h2>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="1-9|1-5|8">
+              macro_rules! print {
+                ($($arg:tt)*) => {
+                  println!($($arg)*);
+                }
+              }
+
+              fn main() {
+                print!("Hello, world!");
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="1-34|1-3|5-18|6|7-10|12-16|20-21|23-34">
+              trait Animal {
+                fn make_sound(&self);
+              }
+
+              macro_rules! MakeAnimal {
+                ($name:ident, $body:expr) => {
+                    struct $name {
+                        name: String,
+                        sound: String,
+                    }
+            
+                    impl Animal for $name {
+                        fn make_sound(&self) {
+                            println!($body, self.sound);
+                        }
+                    }
+                };
+              }
+
+              MakeAnimal!(Dog, "The dog says {}");
+              MakeAnimal!(Cat, "The cat says {}");
+            
+              fn main() {
+                let dog = Dog {
+                    name: "Rusty".to_string(),
+                    sound: "Woof".to_string(),
+                };
+                let cat = Cat {
+                    name: "Garfield".to_string(),
+                    sound: "Meow".to_string(),
+                };
+                dog.make_sound();
+                cat.make_sound();
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>Enums</h2>
+          <p>More than meets the eye</p>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers>
+              enum Color {
+                Red,
+                Green,
+                Blue,
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers>
+              enum Color {
+                RGB(u8, u8, u8),        // Red, Green, Blue
+                RGBA(u8, u8, u8, u8),   // Red, Green, Blue, Alpha
+                CMYK(u8, u8, u8, u8),    // Cyan, Magenta, Yellow, Key (Black)
+                HSL(u16, u8, u8),        // Hue, Saturation, Lightness
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="1-26|16-26|18-20|1-14|23-26">
+              fn print_color_info(color: Color) {
+                match color {
+                    Color::RGB(r, g, b) => {
+                      let 
+                      println!("Red={}, Green={}, Blue={}", r, g, b)
+                    },
+                    Color::CMYK(c, m, y, k) => {
+                      println!("C={}, M={}, Y={}, B={}", c, m, y, k)
+                    },
+                    Color::HSL(h, s, l) => {
+                      println!("H={}, S={}, L={}", h, s, l)
+                    },
+                }
+              }
+
+              fn main() {
+                // Example usage of the color enum
+                let red = Color::RGB(255, 0, 0);
+                let cyan = Color::CMYK(100, 0, 0, 0);
+                let blue = Color::HSL(240, 100, 50);
+            
+                // Print information about the colors
+                print_color_info(red);
+                print_color_info(cyan);
+                print_color_info(blue);
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h3>Two important enums</h3>
+          <p>The results enum -> </p>
+          <pre>
+            <code data-trim data-noescape data-line-numbers>
+              enum Result<T, E> {
+                Ok(T),
+                Err(E),
+              }
+            </code>
+          </pre>
+          <p>The Option enum</p>
+          <pre>
+            <code data-trim data-noescape data-line-numbers>
+              enum Option<T> {
+                Some(T),
+                None,
+              }
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2 class="r-fit-text">The End</h2>
         </section>
       </div>
     </div>
